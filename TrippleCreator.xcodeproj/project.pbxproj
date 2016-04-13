@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D70641BD1CBD2CA4008718F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D70641BC1CBD2CA4008718F8 /* main.m */; };
+		D70641C51CBD354E008718F8 /* APYoutubeVideoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D70641C41CBD354E008718F8 /* APYoutubeVideoObject.m */; };
+		D70641C81CBD3998008718F8 /* RDFTrippleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D70641C71CBD3998008718F8 /* RDFTrippleManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		D70641B91CBD2CA4008718F8 /* TrippleCreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TrippleCreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70641BC1CBD2CA4008718F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D70641C31CBD354E008718F8 /* APYoutubeVideoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APYoutubeVideoObject.h; sourceTree = "<group>"; };
+		D70641C41CBD354E008718F8 /* APYoutubeVideoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APYoutubeVideoObject.m; sourceTree = "<group>"; };
+		D70641C61CBD3998008718F8 /* RDFTrippleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDFTrippleManager.h; sourceTree = "<group>"; };
+		D70641C71CBD3998008718F8 /* RDFTrippleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDFTrippleManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,10 @@
 		D70641BB1CBD2CA4008718F8 /* TrippleCreator */ = {
 			isa = PBXGroup;
 			children = (
+				D70641C31CBD354E008718F8 /* APYoutubeVideoObject.h */,
+				D70641C41CBD354E008718F8 /* APYoutubeVideoObject.m */,
+				D70641C61CBD3998008718F8 /* RDFTrippleManager.h */,
+				D70641C71CBD3998008718F8 /* RDFTrippleManager.m */,
 				D70641BC1CBD2CA4008718F8 /* main.m */,
 			);
 			path = TrippleCreator;
@@ -118,7 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D70641C81CBD3998008718F8 /* RDFTrippleManager.m in Sources */,
 				D70641BD1CBD2CA4008718F8 /* main.m in Sources */,
+				D70641C51CBD354E008718F8 /* APYoutubeVideoObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
