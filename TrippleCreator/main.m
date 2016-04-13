@@ -15,16 +15,15 @@ int stopProgramm = 0;
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSMutableArray *results = [NSMutableArray array];
-        [APYoutubeVideoObject getObjectsWithQuery:@"δομίνικος θεοτοκόπουλος"
+        [APYoutubeVideoObject getObjectsWithQuery:@"theotokopoulos"
                                     nextPageToken:nil
-                                    numberOfItems:50
+                                    numberOfItems:2000
                                      storeResults:results
                                          onFinish:^{
                                              NSLog(@"finish %td", [results count]);
                                              [RDFTrippleManager createRDFTripplesFrom:results];
                                              stopProgramm = 1;
-                                         }];
-        
+                                         }];        
         while (!stopProgramm) {}
     }
     return 0;
