@@ -10,7 +10,8 @@
 
 @implementation RDFTrippleManager
 
-+ (void)createRDFTripplesFrom:(NSArray<APYoutubeVideoObject *> *)videos {
++ (void)createRDFTripplesFrom:(NSArray<APYoutubeVideoObject *> *)videos
+         storeThemInFileNamed:(NSString *)fileNamed {
     NSMutableString *tripples = [NSMutableString string];
     [tripples appendString:@"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n"];
     [tripples appendString:@"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n"];
@@ -23,7 +24,8 @@
     }];
     
     NSData *fileContents = [tripples dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *path = [NSString stringWithFormat:@"%@/triples.txt",NSHomeDirectory()];
+    NSString *fileTitle = [fileNamed stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *path = [NSString stringWithFormat:@"%@/%@.txt",NSHomeDirectory(),fileTitle];
     [[NSFileManager defaultManager] createFileAtPath:path
                                             contents:fileContents
                                           attributes:nil];

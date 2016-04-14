@@ -11,6 +11,7 @@
 
 @interface RDFTrippleManager : NSObject
 
-+ (void)createRDFTripplesFrom:(NSArray<APYoutubeVideoObject *> *)videos;
++ (void)createRDFTripplesFrom:(NSArray<APYoutubeVideoObject *> *)videos
+         storeThemInFileNamed:(NSString *)fileNamed;
 
 @end

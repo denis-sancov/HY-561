@@ -7,6 +7,7 @@
 //
 
 #import "APYoutubeVideoObject.h"
+#import "NSString+FilteredString.h"
 
 @implementation APYoutubeVideoObject
 
@@ -41,9 +42,9 @@
 - (NSString *)tripleRepresentation {
     NSMutableString *triple = [NSMutableString string];
     [triple appendString:@"{\n"];
-    [triple appendFormat:@" id hasTitle %@;\n", _title];
+    [triple appendFormat:@" id hasTitle %@;\n", [_title filter]];
     [triple appendFormat:@"    videoURL %@;\n", _youtubeURLString];
-    [triple appendFormat:@"    hasDescription \"%@\";\n", _detail];
+    [triple appendFormat:@"    hasDescription \"%@\";\n", [_detail filter]];
     [triple appendFormat:@"    hasViewCount %@;\n", _viewCount];
     [triple appendFormat:@"    hasUploadDate %@;\n", _publicationDate];
     [triple appendFormat:@"    fromChannel %@;\n", _channelURLString];
