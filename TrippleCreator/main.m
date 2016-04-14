@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
         NSMutableArray *results = [NSMutableArray array];
         [APYoutubeVideoObject getObjectsWithQuery:queryString
                                     nextPageToken:nil
-                                    numberOfItems:2000
+                                    numberOfItems:100
                                      storeResults:results
                                          onFinish:^{
                                              NSLog(@"finish %td", [results count]);

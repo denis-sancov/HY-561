@@ -25,6 +25,8 @@
         dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
         _publicationDate = [dateFormatter dateFromString:snippet[@"publishedAt"]];
         
+        _tags = snippet[@"tags"];
+        
         _channelTitle = snippet[@"channelTitle"];
         _channelURLString =  [NSString stringWithFormat:@"https://www.youtube.com/channel/%@", snippet[@"channelId"]];
         
@@ -49,6 +51,7 @@
     [triple appendFormat:@"    hasUploadDate %@;\n", _publicationDate];
     [triple appendFormat:@"    fromChannel %@;\n", _channelURLString];
     [triple appendFormat:@"    hasDuration %@;\n", _duration];
+    [triple appendFormat:@"    tags %@;\n", [_tags componentsJoinedByString:@","]];
     [triple appendFormat:@"    kindOfDefinition %@.\n", _definition];
     [triple appendString:@"}\n"];
 
@@ -106,7 +109,7 @@
     NSDictionary *params = @{
         @"key":@"AIzaSyB3c4NmcmnAgA95IEhqtlgjpwpy0thzudg",
         @"id":[ids componentsJoinedByString:@","],
-        @"part":@"snippet, statistics, contentDetails",
+        @"part":@"snippet, statistics, contentDetails, topicDetails",
         @"type":@"video",
         @"order":@"viewCount",
         @"maxResults":@"50"
@@ -115,6 +118,7 @@
     [self performRequestWithPath:@"/youtube/v3/videos"
                           params:params
                         onFinish:^(NSDictionary *response) {
+                            NSLog(@"response %@", response);
                             NSArray *videos = [APYoutubeVideoObject objectsFromDictionary:response];
                             finish(videos);
                         }];
