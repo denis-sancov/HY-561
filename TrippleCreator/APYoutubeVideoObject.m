@@ -31,7 +31,9 @@
         _channelURLString =  [NSString stringWithFormat:@"https://www.youtube.com/channel/%@", snippet[@"channelId"]];
         
         NSDictionary *stats = dictionary[@"statistics"];
-        _viewCount = @([stats[@"viewCount"] integerValue]);
+        NSInteger viewCount = [stats[@"viewCount"] integerValue];
+        _viewCount = @(viewCount);
+        _isPopular = @(viewCount > 1000);
         
         NSDictionary *contentDetails = dictionary[@"contentDetails"];
         _duration = contentDetails[@"duration"];
@@ -44,26 +46,31 @@
 - (NSString *)tripleRepresentation {
     NSMutableString *triple = [NSMutableString string];
     [triple appendString:@"{\n"];
-    [triple appendFormat:@" id hasTitle %@;\n", [_title filter]];
-    [triple appendFormat:@"    videoURL %@;\n", _youtubeURLString];
-    [triple appendFormat:@"    hasDescription \"%@\";\n", [_detail filter]];
-    [triple appendFormat:@"    hasViewCount %@;\n", _viewCount];
-    [triple appendFormat:@"    hasUploadDate %@;\n", _publicationDate];
-    [triple appendFormat:@"    fromChannel %@;\n", _channelURLString];
-    [triple appendFormat:@"    hasDuration %@;\n", _duration];
-    [triple appendFormat:@"    tags %@;\n", [_tags componentsJoinedByString:@","]];
-    [triple appendFormat:@"    kindOfDefinition %@.\n", _definition];
+    [triple appendFormat:@"<%@> crm:hasTitle \"%@\";\n",_youtubeURLString, _title];
+    [triple appendFormat:@"    crm:videoURL %@;\n", _youtubeURLString];
+    [triple appendFormat:@"    crm:hasDescription \"%@\";\n", _detail];
+    [triple appendFormat:@"    crm:hasViewCount \"%@\";\n", _viewCount];
+    [triple appendFormat:@"    crm:hasUploadDate \"%@\";\n", _publicationDate];
+    [triple appendFormat:@"    crm:fromChannel \"%@\";\n", _channelURLString];
+    [triple appendFormat:@"    crm:hasDuration \"%@\";\n", _duration];
+    [triple appendFormat:@"    crm:isPopular \"%@\";\n", _isPopular];
+    [triple appendFormat:@"    crm:tags \"%@\";\n", [_tags componentsJoinedByString:@","]];
+    [triple appendFormat:@"    crm:kindOfDefinition \"%@\".\n", _definition];
+    [triple appendFormat:@"    crm:typeOfVideo \" \".\n"];
     [triple appendString:@"}\n"];
 
     return triple;
 }
 
 + (NSArray<APYoutubeVideoObject *> *)objectsFromDictionary:(NSDictionary *)dictionary {
-    
     NSArray *items = dictionary[@"items"];
     NSMutableArray *result = [NSMutableArray array];
-    [items enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [result addObject:[[self alloc] initWithDictionary:obj]];
+    [items enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary *stats = obj[@"statistics"];
+        NSInteger viewCount = [stats[@"viewCount"] integerValue];
+        if (viewCount >= 50) {
+            [result addObject:[[self alloc] initWithDictionary:obj]];
+        }
     }];
     return result;
 }

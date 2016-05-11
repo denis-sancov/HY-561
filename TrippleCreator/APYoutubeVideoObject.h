@@ -15,6 +15,7 @@
 @property (copy, nonatomic, readonly) NSString *detail;
 @property (strong, nonatomic, readonly) NSDate *publicationDate;
 @property (strong, nonatomic, readonly) NSNumber *viewCount;
+@property (strong, nonatomic, readonly) NSNumber *isPopular;
 @property (strong, nonatomic, readonly) NSArray *tags;
 @property (copy, nonatomic, readonly) NSString *channelTitle;
 @property (copy, nonatomic, readonly) NSString *channelURLString;
